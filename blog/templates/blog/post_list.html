@@ -1,30 +1,13 @@
-<html>
-    <head>
-        <title>Django Blog</title>
-    </head>
-    <body>
-        <div>
-            <h1><a href="/">Sample Blog Created using Django</a></h1>
-        </div>
+{% extends 'blog/base.html' %}
 
+{% block content %}
     {% for post in posts %}
-        <div>
-            <h2><a href="">{{ post.title }}</a></h2>
-            <p>published: {{ post.published_date }}</p>
-            <p>{{ post.text|linebreaksbr }}</p>
+        <div class="post">
+            <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
+            <div class="date">
+                <p>published: {{ post.published_date }}</p>
             </div>
+            <p>{{ post.text|linebreaksbr }}</p>
+        </div>
     {% endfor %}
-
-        <div>
-            <h2><a href="">Random Post</a></h2>
-            <p>published: 14.06.2014, 12:14</p>
-            <p>Hey all, this is just a random post, basically just trying out some easy stuff. Trying to work towards using Django (backend) alongside major javascript frameworks like React js or Angular js to create robust user interactive sites and probably native applications too</p>
-        </div>
-
-        <div>
-            <h2><a href="">Templates</a></h2>
-            <p>published: 14.06.2014, 12:14</p>
-            <p>Think about it... it will be a good idea to actually create react and django rest framework (drf) templates or angular and django templates and use versioning like github for constant upload and modifications. Then I could simply clone these templates as foundation for web development projects. This would make the process much easier, and give more time to accept and handle more projects. Good idea!</p>
-        </div>
-    </body>
-</html>
+{% endblock %}
